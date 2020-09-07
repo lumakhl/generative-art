@@ -16,6 +16,7 @@ void spineCircle(float centX, float centY, float radius) {
     x = centX + (thisRadius * cos(rad));
     y = centY + (thisRadius * sin(rad));
 
+    //strokeWeight(random(3,100));
     noStroke();
     vertex(x, y);
   }

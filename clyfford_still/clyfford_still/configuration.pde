@@ -1,7 +1,9 @@
 Cell[][] _cellArray;
-int _cellSize = 125; //125 the best value
+int _cellSize = 115; //125 the best value
 int _numX, _numY;
-color c1, c2, c3;
+COLOR c1, c2, c3;
+float inc = 0.06;
+float znoise = 0.0;
 
 void config() {
   _cellArray = new Cell[_numX][_numY];

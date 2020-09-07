@@ -37,31 +37,40 @@ class Cell {
     }
   }
 
-  void drawMe() {
+  void drawMe(float n) {
     state = nextState;
     stroke(0);
 
     if (state == 1) {
-      fill(0);
+      fill(myColorIncrement(c1,n));
     } else if (state == 2) {
-      fill(255, 45, 80);
+      fill(myColorIncrement(c2,n));
     } else {
-      fill(255);
+      int r = int(random(3));
+      
+      if(r == 1) {
+        c3 = COLOR.WHITE;
+      } else if (r == 2) {
+        c3 = COLOR.BLACK;
+      } else {
+        c3 = COLOR.SILVER;
+      }
+      fill(myColorIncrement(c3,n));
     }
-
-    spineCircle(x, y, random(345));  
+    
     waveCircle(x, y, random(345));
+    spineCircle(x, y, random(345));  
   }
 
-  float myColorChoice() {
+  color myColorChoice(float n) {
     float value = random(1000);
 
-    if (value > 500) { 
-      return c1;
-    } else if (value > 850) {
-      return c2;
+    if (value > 333) { 
+      return color(n, 0, 0);
+    } else if (value > 666) {
+      return color(255);
     } else { 
-      return c3;
+      return color(0);
     }
   }
 }
