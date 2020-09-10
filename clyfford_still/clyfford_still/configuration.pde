@@ -1,11 +1,15 @@
 Cell[][] _cellArray;
-int _cellSize = 115; //125 the best value
+int _cellSize = 125; //125 the best value
 int _numX, _numY;
 COLOR c1, c2, c3;
 float inc = 0.06;
 float znoise = 0.0;
 
 void config() {
+  c1 = getRandomColor();
+  c2 = getRandomColor();
+  c3 = getRandomColor();
+  
   _cellArray = new Cell[_numX][_numY];
   for (int x = 0; x < _numX; x++) {
     for (int y = 0; y < _numY; y++) {
