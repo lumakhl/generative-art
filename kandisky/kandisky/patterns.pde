@@ -1,4 +1,4 @@
-void shadowCircle(float cx, float cy, float cr, color shadowColor, color formColor) {
+void shadowCircle(float cx, float cy, float cr, color shadowColor, color formColor) { //<>// //<>// //<>//
   float shadowSize = cr+random(50, 100);
 
   fill(shadowColor, 56);
@@ -42,27 +42,27 @@ void stripedCircle(float cx, float cy, float cr, color formColor) {
 void arcs(int centerX, int centerY, int numOfArcs, int largeRadius, int smallRadius, int fillColor, int transparency, int rotAngle) {
   int inc = (largeRadius - smallRadius)/numOfArcs;
   int offsetX = 0;
-  int r,g,b;
-  
+  int r, g, b;
+
   translate(centerX, centerY);
   rotate(radians(rotAngle));
   fill(fillColor, transparency);
-  
-  for(int i=0; i<numOfArcs; i++) {
+
+  for (int i=0; i<numOfArcs; i++) {
     r = (i%30)*40+130;
     g = (i+1)%3*75;
     b = (i+2)%3*25;
-    
+
     strokeWeight(4);
-    stroke(r,g,b);
+    stroke(r, g, b);
     arc(offsetX, 0, largeRadius-i*inc, largeRadius-i*inc, PI, TWO_PI);
-    
+
     strokeWeight(1);
     stroke(0);
     arc(offsetX, 0, largeRadius-i*inc, largeRadius-i*inc, PI, TWO_PI);
-    
+
     offsetX += largeRadius-i*inc;
-    if(inc>0) offsetX -= 4;
+    if (inc>0) offsetX -= 4;
   }
   strokeWeight(0);
   rotate(radians(-rotAngle));
@@ -70,22 +70,23 @@ void arcs(int centerX, int centerY, int numOfArcs, int largeRadius, int smallRad
 }
 
 void closedGrade(int centX, int centY) {
-  int columns = int(random(3,10));  //<>//
-  int lines = int(random(3,10));
-  int columnHeight = int(random(10,50));
-  int columnWidth = int(random(10,50));
+  int columns = int(random(3, 10)); 
+  int lines = int(random(3, 10));
+  int columnHeight = int(random(10, 50));
+  int columnWidth = int(random(10, 50));
   int rotation = int(random(360));
-  
+
   int p1 = 0;
   int p2 = 0;
-  
+
   strokeWeight(3);
   stroke(0);
-   //<>//
-  push();
+ //<>//
+  pushMatrix();
   translate(centX, centY);
-  
-  for(int x=0; x < columns; x++) { //<>// //<>//
+  rotate(radians(rotation));
+ //<>//
+  for (int x=0; x < columns; x++) {
     for (int y=0; y < lines; y++) {
       if (randomSignum() == -1) {
         color co = color(random(255));
@@ -93,11 +94,73 @@ void closedGrade(int centX, int centY) {
       } else {
         noFill();
       }
-      rect(centX+p1, centY+p2,  columnWidth, columnHeight);
-      p1 += columnWidth; //<>//
+      rect(p1, p2, columnWidth, columnHeight);
+      p1 += columnWidth;
     }
     p1 = 0;
-    p2 += columnHeight; 
+    p2 += columnHeight;
+  }  
+  popMatrix();  
+  noFill();
+  noStroke();
+}
+
+void groupedLine(int centX, int centY) {
+  int space = int(random(10, 50));
+  int rotation = int(random(360));
+  int quantity = 3;
+
+  int lineHeight = int(random(10));
+  int lineWidth = int(random(100, 200));
+
+  stroke(0);
+  strokeWeight(random(10));
+  fill(0);
+
+
+  pushMatrix();
+  translate(centX, centY);
+  rotate(radians(rotation));
+
+  int lastPosition = 0;
+  for (int x = 0; x < quantity; x++) {
+    rect(0, lastPosition, lineWidth, lineHeight);
+    lastPosition += lineHeight + space;
   }
-    
+
+  popMatrix();
+}
+
+void curvedLine(int centX, float centY) {
+  float xstep = 0.5;
+  float lastx = -999;
+  float lasty = -999;
+  float angle = 0;
+  float len = 480;
+  
+  float largura = 20;
+
+  float y = centY;
+  strokeWeight(largura);
+  stroke(0);
+  
+  float curve = 100;
+  pushMatrix();
+  scale(0.5);
+  
+  for (float x=centX; x <= centX+len; x+= xstep) {
+    float rad = radians(angle);
+    centY = 50 + (cos(rad)*curve)+y;
+    curve -= 0.1;
+    if (lastx > -999) {
+      strokeWeight(largura);
+      line(x, centY, lastx, lasty);
+      largura = largura <= 0.5 ? 1 : largura - 0.02;
+    }
+    lastx = x;
+    lasty = centY;
+    angle++;
+  }
+  
+  popMatrix();
 }
