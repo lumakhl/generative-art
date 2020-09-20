@@ -1,4 +1,4 @@
-void shadowCircle(float cx, float cy, float cr, color shadowColor, color formColor) { //<>// //<>// //<>//
+void shadowCircle(float cx, float cy, float cr, color shadowColor, color formColor) { //<>// //<>// //<>// //<>//
   float shadowSize = cr+random(50, 100);
 
   fill(shadowColor, 56);
@@ -137,17 +137,17 @@ void curvedLine(int centX, float centY) {
   float lasty = -999;
   float angle = 0;
   float len = 480;
-  
+
   float largura = 20;
 
   float y = centY;
   strokeWeight(largura);
   stroke(0);
-  
+
   float curve = 100;
   pushMatrix();
   scale(0.5);
-  
+
   for (float x=centX; x <= centX+len; x+= xstep) {
     float rad = radians(angle);
     centY = 50 + (cos(rad)*curve)+y;
@@ -161,6 +161,70 @@ void curvedLine(int centX, float centY) {
     lasty = centY;
     angle++;
   }
-  
+
   popMatrix();
+}
+
+void cutedLine(int centX, int centY) {
+  float lenght = random(height/4);
+  float tLenght = lenght/4;
+  stroke(0);
+  line(centX-lenght-45, centY-lenght-45, centX+lenght+45, centY+lenght+45);
+  line(centX-tLenght-45, centY+80+tLenght+45, centX+80+tLenght+45, centY-tLenght-45);
+  line(centX-tLenght-45, centY+120+tLenght+45, centX+120+tLenght+45, centY-tLenght-45);
+}
+
+void eyebrow(int centX, int centY) {
+  float radius = 100;
+
+  float x, y;
+  float lastX = 0;
+  float lastY = 0;
+  float largura = 20;
+
+  stroke(0);
+  strokeWeight(largura);
+
+  for (float ang=225; ang <= 315; ang +=5) {
+    float rad = radians(ang);
+    x = centX + (radius*cos(rad));
+    y = centY + (radius*sin(rad));
+
+    if (ang == 225) {
+      lastX = x;
+      lastY = y;
+    }
+
+    if (ang == 225 || ang == 230 || ang == 315) {
+      strokeCap(SQUARE);
+    } else {
+      strokeCap(ROUND);
+    }
+
+    strokeWeight(largura);
+    line(x, y, lastX, lastY); 
+
+    largura -= 0.5;
+    lastX = x;
+    lastY = y;
+  }
+}
+
+void semiCircle(int centX, int centY) {
+  float radius = 100;
+  float x, y;
+  float transparency = random(10, 170);
+
+  stroke(0, 0, 0, transparency);
+  strokeWeight(3);
+
+  beginShape();
+  for (float ang=180; ang <= 360; ang +=5) {
+    float rad = radians(ang);
+    x = centX + (radius*cos(rad));
+    y = centY + (radius*sin(rad));
+
+    curveVertex(x, y);
+  }
+  endShape();
 }

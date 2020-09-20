@@ -34,7 +34,10 @@ void draw() {
   //arcs( int(random(width)), int(random(height)), 3, 60, 60, 9, 10, 45);
   //closedGrade(width/2, height/2);
   //groupedLine(width/2, height/2);
-  curvedLine(width/2, height/2);
+  //curvedLine(width/2, height/2);
+  //eyebrow(width/2, height/2);
+  //semiCircle(width/2, height/2); 
+  cutedLine(width/2, height/2);
 
 
    noLoop();
