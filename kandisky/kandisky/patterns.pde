@@ -1,4 +1,4 @@
-void shadowCircle(float cx, float cy, float cr, color shadowColor, color formColor) { //<>// //<>// //<>// //<>//
+void shadowCircle(float cx, float cy, float cr, color shadowColor, color formColor) { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   float shadowSize = cr+random(50, 100);
 
   fill(shadowColor, 56);
@@ -81,11 +81,11 @@ void closedGrade(int centX, int centY) {
 
   strokeWeight(3);
   stroke(0);
- //<>//
+
   pushMatrix();
   translate(centX, centY);
   rotate(radians(rotation));
- //<>//
+
   for (int x=0; x < columns; x++) {
     for (int y=0; y < lines; y++) {
       if (randomSignum() == -1) {
@@ -168,10 +168,35 @@ void curvedLine(int centX, float centY) {
 void cutedLine(int centX, int centY) {
   float lenght = random(height/4);
   float tLenght = lenght/4;
+  float rotation = random(360);
+
+  pushMatrix();
+  translate(centX, centY);
+  rotate(radians(rotation));
+
   stroke(0);
-  line(centX-lenght-45, centY-lenght-45, centX+lenght+45, centY+lenght+45);
-  line(centX-tLenght-45, centY+80+tLenght+45, centX+80+tLenght+45, centY-tLenght-45);
-  line(centX-tLenght-45, centY+120+tLenght+45, centX+120+tLenght+45, centY-tLenght-45);
+
+  line(-lenght-45, -lenght-45, +lenght+45, +lenght+45);
+  line(-tLenght-45, +80+tLenght+45, +80+tLenght+45, -tLenght-45);
+  line(-tLenght-45, +120+tLenght+45, +120+tLenght+45, -tLenght-45);
+
+  popMatrix();
+}
+
+void simpleLine(int centX, int centY) {
+  float length = random(height/2);
+  float rotation = random(360);
+
+  pushMatrix();
+  translate(centX, centY);
+  rotate(radians(rotation));
+
+  strokeWeight(random(10, 30));
+  strokeCap(SQUARE);
+  stroke(0);
+  line(0, 0, +length, +length);
+
+  pushMatrix();
 }
 
 void eyebrow(int centX, int centY) {
@@ -215,6 +240,7 @@ void semiCircle(int centX, int centY) {
   float x, y;
   float transparency = random(10, 170);
 
+  noFill();
   stroke(0, 0, 0, transparency);
   strokeWeight(3);
 
@@ -227,4 +253,144 @@ void semiCircle(int centX, int centY) {
     curveVertex(x, y);
   }
   endShape();
+}
+
+void trapeze(int centX, int centY) {
+  float lengthHorizontal = random(width/2);
+  float lenghtVertical = random(height/2);
+  float transparency = random(10, 170); 
+
+  fill(random(255), random(255), random(255), transparency);
+
+  noStroke();
+
+  beginShape();
+  vertex(centX, centY);
+  vertex(centX+lengthHorizontal, centY);
+  vertex(centX+lengthHorizontal, centY+lenghtVertical);
+  vertex(centX-25, centY+lenghtVertical);
+  endShape(CLOSE);
+}
+
+void darkTriangle(int centX, int centY) {
+  float lengthHorizontal = random(20, 30);
+  float lenghtVertical = lengthHorizontal * random(10, 20);
+  float rotation = random(360);
+
+  fill(0);
+
+  pushMatrix();
+  translate(centX, centY);
+  rotate(radians(rotation));
+
+  beginShape();
+  vertex(0, 0);
+  vertex(+lengthHorizontal, 0);
+  vertex(+lengthHorizontal, +lenghtVertical);
+  endShape(CLOSE);
+
+  popMatrix();
+}
+
+void triangle(int centX, int centY) {
+  float lengthHorizontal = random(width/2);
+  float lengthVertical = random(height/2);
+
+  float rotation = random(360);
+  float transparency = random(10, 170);
+
+  fill(random(255), random(255), random(255), transparency);
+
+  pushMatrix();
+  translate(centX, centY);
+  rotate(radians(rotation));
+
+  noStroke();
+
+  beginShape();
+  vertex(0, 0);
+  vertex(+lengthHorizontal, 0);
+  vertex(+lengthHorizontal, +lengthVertical);
+  endShape(CLOSE);
+
+  popMatrix();
+}
+
+void doubleTriangle(int centX, int centY) {
+  float lengthHorizontal = random(20, 30);
+  float lengthVertical = lengthHorizontal * random(10, 20);
+
+  float rotation = random(360);
+  float transparency = random(10, 170);
+
+  fill(random(255), random(255), random(255), transparency);
+
+  pushMatrix();
+  translate(centX, centY);
+  rotate(radians(rotation));
+
+  beginShape();
+  vertex(0, 0);
+  vertex(+lengthHorizontal, 0);
+  vertex(0, lengthVertical/4);
+  vertex(+lengthHorizontal, lengthVertical/2);
+  endShape();
+
+
+  popMatrix();
+}
+
+void colorTriangle(int centX, int centY) {
+  float lengthHorizontal = random(20, 30);
+  float lengthVertical = lengthHorizontal * random(10, 20);
+  int divide =  int(random(2, 6));
+
+  float rotation = random(360);
+
+  pushMatrix();
+  translate(centX, centY);
+  rotate(radians(rotation));
+
+  for (float i = divide; i > 0; i--) {
+    float fator = i/divide;
+
+    fill(random(170), random(170), random(170));
+
+    beginShape(); //<>//
+    vertex(lerp(lengthHorizontal, 0, fator), lerp(lengthVertical, 0, fator));
+    vertex(lengthHorizontal, lerp(lengthVertical, 0, fator));
+    vertex(lengthHorizontal, lengthVertical);
+    endShape(CLOSE);
+  } //<>//
+  popMatrix();
+}
+
+void flag(int centX, int centY) {
+  color c1 = color(random(255), random(255), random(255));
+  color c2 = color(random(255), random(255), random(255));
+
+
+  float divide = random(3, 6);
+  int lineHeight = int(random(10));
+  int lineWidth = int(random(100, 200));
+  float rotation = random(360);
+
+  pushMatrix();
+  translate(centX, centY);
+  rotate(radians(rotation));
+
+  int lastPosition = 0;
+  for (int x = 0; x < divide; x++) {
+    stroke(0);  
+    if (x%2 ==0) {
+      fill(c1);
+    } else {
+      fill(c2);
+    }
+
+    rect(0, lastPosition, lineWidth, lineHeight);
+    lastPosition += lineHeight;
+  }
+
+  popMatrix();
 }

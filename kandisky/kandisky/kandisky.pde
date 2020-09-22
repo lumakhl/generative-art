@@ -4,7 +4,6 @@ color baseColor;
 int perimeterSize;
 
 void setup() {
-  println("valor: "+ widthSize, heightSize);
   background(baseColor);
 
   drawContour();
@@ -37,7 +36,14 @@ void draw() {
   //curvedLine(width/2, height/2);
   //eyebrow(width/2, height/2);
   //semiCircle(width/2, height/2); 
-  cutedLine(width/2, height/2);
+  //cutedLine(width/2, height/2);
+  //simpleLine(width/2, height/2);
+  //darkTriangle(int(random(width)), int(random(height)));
+  //trapeze(width/2, height/2);
+  //triangle(width/2, height/2);
+  //doubleTriangle(width/2, height/2);
+  //colorTriangle(width/2, height/2);
+  flag(width/2, height/2);
 
 
    noLoop();
