@@ -39,11 +39,12 @@ void draw() {
   //cutedLine(width/2, height/2);
   //simpleLine(width/2, height/2);
   //darkTriangle(int(random(width)), int(random(height)));
-  //trapeze(width/2, height/2);
+  //trapeze(width/4, height/4);
   //triangle(width/2, height/2);
   //doubleTriangle(width/2, height/2);
   //colorTriangle(width/2, height/2);
-  flag(width/2, height/2);
+  //flag(int(random(width/2)), int(random(height/2)));
+  //colorTrapeze(width/2, height/2);
 
 
    noLoop();

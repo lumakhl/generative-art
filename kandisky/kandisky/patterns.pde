@@ -1,4 +1,4 @@
-void shadowCircle(float cx, float cy, float cr, color shadowColor, color formColor) { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+void shadowCircle(float cx, float cy, float cr, color shadowColor, color formColor) { //<>// //<>// //<>//
   float shadowSize = cr+random(50, 100);
 
   fill(shadowColor, 56);
@@ -105,6 +105,37 @@ void closedGrade(int centX, int centY) {
   noStroke();
 }
 
+void openedGrid(int centX, int centY) {
+  int columns = int(random(3, 10)); 
+  int lines = int(random(3, 10));
+
+  int rotation = int(random(360));
+
+  strokeWeight(3);
+  stroke(0);
+
+  pushMatrix();
+  translate(centX, centY);
+  rotate(radians(rotation));
+
+  int lastX = 0;
+  int lastY = 0;
+
+  for (int x = 0; x < lines; x++) {
+    line(0, lastY, +110, lastY);
+    lastY += 15;
+  }
+
+  for (int y = 0; y < columns; y++) {
+    lastX += 100/columns;
+    line(lastX, 0-25, lastX, +100+10);
+  }
+
+  popMatrix();  
+  noFill();
+  noStroke();
+}
+
 void groupedLine(int centX, int centY) {
   int space = int(random(10, 50));
   int rotation = int(random(360));
@@ -128,6 +159,27 @@ void groupedLine(int centX, int centY) {
     lastPosition += lineHeight + space;
   }
 
+  popMatrix();
+}
+
+void groupedTriangleLine(int centX, int centY) {
+  int size = int(random(100, 200));
+  int quantity = int(random(3, 6));
+  float rotation = random(360);
+  int space = 20;
+
+  strokeWeight(3);
+  stroke(0);
+
+  pushMatrix();
+  translate(centX, centY);
+  rotate(radians(rotation));
+
+  int lastX = -space;
+  for (int x = 0; x < quantity; x++) {
+    line(lastX, size, 0, 0);
+    lastX += space;
+  }
   popMatrix();
 }
 
@@ -272,6 +324,41 @@ void trapeze(int centX, int centY) {
   endShape(CLOSE);
 }
 
+void colorTrapeze(int centX, int centY) {
+  float lengthHorizontal = random(width/2);
+  float lenghtVertical = random(lengthHorizontal) /2;
+  float transparency = random(10, 170); 
+  int divide =  int(random(2, 6));
+  float rotation = random(360);
+
+  pushMatrix();
+  translate(centX, centY);
+  rotate(radians(rotation));
+
+  fill(random(255), random(255), random(255), transparency);
+  beginShape();
+  vertex(0, 0);
+  vertex(+lengthHorizontal, 0);
+  vertex(+lengthHorizontal, +lenghtVertical);
+  vertex(-25, +lenghtVertical);
+  endShape(CLOSE);
+
+  for (float i = divide; i > 0; i--) {
+    float fator = i/divide;
+
+    fill(random(255), random(255), random(255), transparency);
+    noStroke();
+    beginShape();
+    vertex(lerp(0, +lengthHorizontal, fator), 0);
+    vertex(+lengthHorizontal, 0);
+    vertex(+lengthHorizontal, +lenghtVertical);
+    vertex(lerp(0, +lengthHorizontal, fator), +lenghtVertical);
+    endShape(CLOSE);
+  }
+
+  popMatrix();
+}
+
 void darkTriangle(int centX, int centY) {
   float lengthHorizontal = random(20, 30);
   float lenghtVertical = lengthHorizontal * random(10, 20);
@@ -356,12 +443,12 @@ void colorTriangle(int centX, int centY) {
 
     fill(random(170), random(170), random(170));
 
-    beginShape(); //<>//
+    beginShape();
     vertex(lerp(lengthHorizontal, 0, fator), lerp(lengthVertical, 0, fator));
     vertex(lengthHorizontal, lerp(lengthVertical, 0, fator));
     vertex(lengthHorizontal, lengthVertical);
     endShape(CLOSE);
-  } //<>//
+  }
   popMatrix();
 }
 
@@ -374,6 +461,8 @@ void flag(int centX, int centY) {
   int lineHeight = int(random(10));
   int lineWidth = int(random(100, 200));
   float rotation = random(360);
+
+  noFill();
 
   pushMatrix();
   translate(centX, centY);
