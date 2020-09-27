@@ -331,6 +331,8 @@ void colorTrapeze(int centX, int centY) {
   int divide =  int(random(2, 6));
   float rotation = random(360);
 
+  noStroke();
+
   pushMatrix();
   translate(centX, centY);
   rotate(radians(rotation));
@@ -481,5 +483,35 @@ void flag(int centX, int centY) {
     lastPosition += lineHeight;
   }
 
+  popMatrix();
+}
+
+void square(int centX, int centY) {
+  int rotation = int(random(360));
+  float size = random(width/6);
+  float transparency = random(10, 170);
+  
+  pushMatrix();
+  translate(centX, centY);
+  rotate(radians(rotation));
+  
+  fill(random(255), random(255), random(255), transparency);
+  square(0, 0, size);
+  
+  popMatrix();
+}
+
+void darkSquare(int centX, int centY) {
+  int rotation = int(random(360));
+  float size = width/12;
+  
+  pushMatrix();
+  translate(centX, centY);
+  rotate(radians(rotation));
+  
+  stroke(0);
+  fill(0);
+  square(0, 0, size);
+  
   popMatrix();
 }

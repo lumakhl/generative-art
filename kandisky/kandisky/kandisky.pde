@@ -45,6 +45,9 @@ void draw() {
   //colorTriangle(width/2, height/2);
   //flag(int(random(width/2)), int(random(height/2)));
   //colorTrapeze(width/2, height/2);
+  //groupedTriangleLine(width/2, height/2);
+  square(width/2, height/2);
+  darkSquare(width/2, height/2);
 
 
    noLoop();
