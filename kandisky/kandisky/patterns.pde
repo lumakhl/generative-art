@@ -1,4 +1,7 @@
-void shadowCircle(float cx, float cy, float cr, color shadowColor, color formColor) { //<>// //<>// //<>//
+void shadowCircle(float cx, float cy) { //<>//
+  float cr = random(width/8, width/4); 
+  color shadowColor = color(random(255), random(255), random(255)); 
+  color formColor = color(random(255), random(255), random(255));
   float shadowSize = cr+random(50, 100);
 
   fill(shadowColor, 56);
@@ -12,7 +15,9 @@ void shadowCircle(float cx, float cy, float cr, color shadowColor, color formCol
   ellipse(cx, cy, cr, cr);
 }
 
-void circle(float cx, float cy, float cr, color formColor) {
+void circle(float cx, float cy) {
+  float cr = random(width/8, width/4); 
+  color formColor = color(random(255), random(255), random(255));
   if (randomSignum() != -1) {
     stroke(0);
     strokeWeight(random(1, 3));
@@ -21,8 +26,9 @@ void circle(float cx, float cy, float cr, color formColor) {
   ellipse(cx, cy, cr, cr);
 }
 
-void stripedCircle(float cx, float cy, float cr, color formColor) {
-
+void stripedCircle(float cx, float cy) {
+  float cr = random(width/8, width/4);
+  color formColor = color(random(255), random(255), random(255));
   float lenght = random(width/8, width/4);
 
   stroke(0);
@@ -458,9 +464,8 @@ void flag(int centX, int centY) {
   color c1 = color(random(255), random(255), random(255));
   color c2 = color(random(255), random(255), random(255));
 
-
   float divide = random(3, 6);
-  int lineHeight = int(random(10));
+  int lineHeight = int(random(10, 20));
   int lineWidth = int(random(100, 200));
   float rotation = random(360);
 
@@ -472,6 +477,7 @@ void flag(int centX, int centY) {
 
   int lastPosition = 0;
   for (int x = 0; x < divide; x++) {
+    strokeWeight(1);
     stroke(0);  
     if (x%2 ==0) {
       fill(c1);
@@ -490,28 +496,28 @@ void square(int centX, int centY) {
   int rotation = int(random(360));
   float size = random(width/6);
   float transparency = random(10, 170);
-  
+
   pushMatrix();
   translate(centX, centY);
   rotate(radians(rotation));
-  
+
   fill(random(255), random(255), random(255), transparency);
   square(0, 0, size);
-  
+
   popMatrix();
 }
 
 void darkSquare(int centX, int centY) {
   int rotation = int(random(360));
   float size = width/12;
-  
+
   pushMatrix();
   translate(centX, centY);
   rotate(radians(rotation));
-  
+
   stroke(0);
   fill(0);
   square(0, 0, size);
-  
+
   popMatrix();
 }

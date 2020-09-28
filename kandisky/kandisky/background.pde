@@ -6,7 +6,6 @@ void drawContour() {
   loadPixels();
 
   for (int x = 0; x < width; x++) { 
-
     float xoff = 0;
     for (int y = 0; y < height; y++) {
       int index = (x + y * width);

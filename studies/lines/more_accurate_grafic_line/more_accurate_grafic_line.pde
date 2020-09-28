@@ -1,7 +1,7 @@
 size(800,800);
 background(255,255);
 
-lines() {
+
 float xstep = 10;
 float ystep = 10;
 
@@ -17,5 +17,4 @@ for(int x=20; x<=720; x+= xstep) {
   line(x,y, lastx, lasty);
   lastx = x;
   lasty = y;
-}
 }
