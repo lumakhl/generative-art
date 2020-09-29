@@ -9,7 +9,10 @@ enum CENTRAL_PATTERNS {
     TRIANGLE(7), 
     DOUBLE_TRIANGLE(8), 
     COLOR_TRIANGLE(9), 
-    SQUARE(10);
+    SQUARE(10),
+    CLOSE_GRADE(11),
+    OPENED_GRID(12);
+    
 
   private final int value;
 
@@ -45,6 +48,10 @@ enum CENTRAL_PATTERNS {
       return COLOR_TRIANGLE;
     case 10: 
       return SQUARE;
+    case 11:
+      return CLOSE_GRADE;
+    case 12:
+      return OPENED_GRID;
     default:
       return null;
     }

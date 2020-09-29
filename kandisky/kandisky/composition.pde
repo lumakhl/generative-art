@@ -24,16 +24,16 @@ void leftEdge() {
 
 void bottomEdge() {
   for (EDGE_PATTERNS pattern : edge_bottom) {
-    int centX = int(random(width/2-perimeterSize/2, perimeterSize));
-    int centY = int(random(height/2-perimeterSize/2, perimeterSize));
+    int centX = int(random(0, width));
+    int centY = int(random(height/2-perimeterSize/2+perimeterSize, height));
     drawMe(pattern, centX, centY);
   }
 }
 
 void upEdge() {
   for (EDGE_PATTERNS pattern : edge_up) {
-    int centX = int(random(width/2-perimeterSize/2, perimeterSize));
-    int centY = int(random(height/2-perimeterSize/2, perimeterSize));
+    int centX = int(random(0, width));
+    int centY = int(random(0, height/2-perimeterSize/2));
     drawMe(pattern, centX, centY);
   }
 }
