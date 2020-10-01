@@ -26,7 +26,7 @@ void draw() {
   leftEdge();
   bottomEdge();
   
-  save("kandisky-step-"+random(1000)+"png");
+  save("kandisky-cinco-"+random(1000)+"png");
   noLoop();
   
   //refresh();
@@ -35,5 +35,6 @@ void draw() {
 void refresh() {
   configBaseColor();
   background(baseColor);
+  drawContour();
   initialize();
 }

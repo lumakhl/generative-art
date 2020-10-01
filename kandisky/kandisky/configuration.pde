@@ -5,6 +5,7 @@ ArrayList<EDGE_PATTERNS> edge_right;
 ArrayList<EDGE_PATTERNS> edge_left;
 ArrayList<EDGE_PATTERNS> edge_bottom;
 ArrayList<EDGE_PATTERNS> edge_up;
+CENTRAL_PATTERNS centralPattern;
 
 int randomSignum() {
   return (int) random(2) * 2 - 1;
@@ -41,10 +42,12 @@ void initialize() {
   edge_left = new ArrayList();
   edge_bottom = new ArrayList();
   edge_up = new ArrayList();
+  
+  centralPattern = CENTRAL_PATTERNS.intToCentralPattern(int(random(0, 4)));
 
   initializeCenter(qty_central);
   initializeRight(qty_right);
-  initializeLeft(qty_left);
+  initializeLeft(qty_right);
   initializeBottom(qty_bottom);
   initializeUp(qty_up);
 }

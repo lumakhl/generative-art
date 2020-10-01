@@ -1,3 +1,10 @@
+void centralPoint() {
+  int centX = width/2;
+  int centY = height/2;
+  
+  drawMe(centralPattern, centX, centY);
+}
+
 void center() {
   for (CENTRAL_PATTERNS pattern : central_patterns) {
     int centX = int(random(width/2-perimeterSize/2, perimeterSize));
