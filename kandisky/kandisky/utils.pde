@@ -33,6 +33,12 @@ void drawMe(CENTRAL_PATTERNS pattern, int centX, int centY) {
   case SQUARE:
     square(centX, centY);
     break;
+  case CLOSE_GRADE:
+    closedGrade(centX, centY);
+    break;
+  case OPENED_GRID:
+    openedGrid(centX, centY);
+    break;
   }
 }
 

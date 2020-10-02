@@ -3,6 +3,8 @@ void shadowCircle(float cx, float cy) { //<>//
   color shadowColor = color(random(255), random(255), random(255)); 
   color formColor = color(random(255), random(255), random(255));
   float shadowSize = cr+random(50, 100);
+  
+  noStroke();
 
   fill(shadowColor, 56);
   ellipse(cx, cy, shadowSize, shadowSize);
@@ -211,6 +213,7 @@ void curvedLine(int centX, float centY) {
     centY = 50 + (cos(rad)*curve)+y;
     curve -= 0.1;
     if (lastx > -999) {
+      strokeCap(ROUND);
       strokeWeight(largura);
       line(x, centY, lastx, lasty);
       largura = largura <= 0.5 ? 1 : largura - 0.02;
@@ -509,7 +512,7 @@ void square(int centX, int centY) {
 
 void darkSquare(int centX, int centY) {
   int rotation = int(random(360));
-  float size = width/12;
+  float size = width/14;
 
   pushMatrix();
   translate(centX, centY);
