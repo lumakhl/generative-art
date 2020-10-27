@@ -45,8 +45,8 @@ void draw() {
   znoise += inc;
 
   String title = "clyfford-oil1"+random(1000);
-  save(title+".png");
-  PImage img = loadImage(title+".png");
+  save("folder2/"+title+".png");
+  PImage img = loadImage("folder2/"+title+".png");
 
   saveWithFilter(img);
   oilPaintingFilter(img);
@@ -55,7 +55,7 @@ void draw() {
     .noise(0.1, 0.1)
     .compose();
 
-  save(title+"-novo-oil"+".png");
+  save("folder2/"+title+"-final"+".png");
   config();
   // noLoop();
 }

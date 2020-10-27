@@ -12,5 +12,6 @@ void draw() {
   for (int x = 0; x < 3; x++) {
     createComposition();
   }
-  noLoop();
+ // noLoop();
+  save("van-gogh"+random(1000)+"png");
 }

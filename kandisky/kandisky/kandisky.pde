@@ -26,7 +26,7 @@ void draw() {
   leftEdge();
   bottomEdge();
   
-  save("kandisky-sete-noise-filter"+random(1000)+"png");
+  save("folder/kandisky"+random(1000)+"png");
   noLoop();
 
   //refresh();
